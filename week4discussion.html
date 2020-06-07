@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+    <head>
+        <title>Week 4 Discussion</title>
+    </head>
+    <body>
+        <div>
+            <span style="position: relative; left: 50%;">Week 4 Discussion</span>
+            <span style="float: right;">Austin Henley</span>
+        </div>
+        Number of bottles: <input type="number" onchange="document.getElementById('mikesResult').innerText = `Mike's Function Result: ${mikesFunction(this.value)}`; document.getElementById('timsResult').innerText = `Tim's Function Result: ${timsFunction(this.value)}`" />
+        <p id="mikesResult"></p>
+        <p id="timsResult"></p>
+
+        <ol>
+            <li>Frist 5:
+                <ul>
+                    <li>Mike's Function:
+                        <ol id="mikeList">
+                        </ol>
+                    </li>
+                    <li>Tim's Function:
+                        <ol id="timList">
+                        </ol>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                For x Bottles:
+                <ul>
+                    <li>Mike's Function:
+                        <ul>
+                            <li>50: <span id="mikeFifty"></span></li>
+                            <li>100: <span id="mikeHundredth"></span></li>
+                        </ul>
+                    </li>
+                    <li>Tim's Function:
+                        <ul>
+                            <li>50: <span id="timFifty"></span></li>
+                            <li>100: <span id="timHundredth"></span></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+        <script>
+            const mikesFunction = (value) => 0.1*Math.pow(1.02, value - 1);
+
+            const timsFunction = (value) => 0.01*(value-1)+0.15;
+
+            for(var i = 1; i <= 5; i++)
+            {
+                var mikeList = document.getElementById('mikeList');
+                var timList = document.getElementById('timList');
+                var mikeElem = document.createElement("li");
+                mikeElem.innerText = mikesFunction(i);
+                mikeList.appendChild(mikeElem);
+
+                var timElem = document.createElement("li");
+                timElem.innerText = timsFunction(i);
+                timList.appendChild(timElem);
+            }
+
+            document.getElementById('mikeFifty').innerText = mikesFunction(50);
+            document.getElementById('mikeHundredth').innerText = mikesFunction(100);
+            document.getElementById('timFifty').innerText = timsFunction(50);
+            document.getElementById('timHundredth').innerText = timsFunction(100);
+        </script>
+    </body>
+</html>
